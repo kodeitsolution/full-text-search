@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Blog = require("../models/blog");
+const { remove } = require("../models/blog");
 
 // Add Event
 router.post("/add-event", async (req, res) => {
@@ -47,8 +48,8 @@ router.post("/search", async function (req, res) {
 router.delete("/delete:id", async function (req, res) {
   try {
     const result = await Blog.find({ eid: req.query.id });
-    Blog.remove({ id: result._id })
-    res.json(result);
+    const removeEvent = Blog.remove({ id: result._id })
+    res.json(removeEvent);
   } catch (err) {
     res.json({ message: err });
   }

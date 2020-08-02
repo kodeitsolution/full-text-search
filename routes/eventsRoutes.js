@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Blog = require("../models/blog");
 
-// mongoose & mongo tests
+// Add Event
 router.post("/add-event", async (req, res) => {
   const blog = new Blog({
     eventName: req.body.eventName,
@@ -21,6 +21,7 @@ router.post("/add-event", async (req, res) => {
   }
 });
 
+// All events
 router.get("/all-events", async (req, res) => {
   try {
     const blogs = await Blog.find();
@@ -30,6 +31,7 @@ router.get("/all-events", async (req, res) => {
   }
 });
 
+// Search Event
 router.post("/search", async function (req, res) {
   try {
     const result = await Blog.find({
@@ -41,9 +43,11 @@ router.post("/search", async function (req, res) {
   }
 });
 
-router.get("/", async function (req, res) {
+// Delte Events
+router.delete("/delete:id", async function (req, res) {
   try {
     const result = await Blog.find({ eid: req.query.id });
+    Blog.remove({ id: result._id })
     res.json(result);
   } catch (err) {
     res.json({ message: err });

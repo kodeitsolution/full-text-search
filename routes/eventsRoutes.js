@@ -33,10 +33,7 @@ router.get("/all-events", async (req, res) => {
 router.post("/search", async function (req, res) {
   try {
     const result = await Blog.find({
-      eventDate: {
-        $gte: new Date().toISOString(),
-      },
-      $text: { $search: req.body.term },
+      $text: { $search: req.body.term }
     });
     res.json(result);
   } catch (err) {

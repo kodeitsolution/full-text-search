@@ -20,7 +20,7 @@ app.use(cors());
 
 mongoose
   .connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => app.listen(3000))
+  .then((result) => app.listen(8080))
   .catch((err) => console.log(err));
 
 // middleware & static files

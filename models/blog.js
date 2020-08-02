@@ -5,20 +5,25 @@ const EventSchema = new Schema({
   eventName: {
     type: String,
     required: true,
-    text: true
   },
   eventCategory: {
     type: String,
     required: true,
-    text: true
   },
   city: {
     type: String,
     required: true,
-    text: true
   },
   eid: {
     type: String,
+    required: true
+  },
+  eventDate: {
+    type: Date,
+    required: true
+  },
+  eventEndDate: {
+    type: Date,
     required: true
   }
 }, { timestamps: true });

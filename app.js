@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const cors = require('cors');
+require('dotenv').config();
 
 const EventsRoutes = require("./routes/eventsRoutes");
 // express app
@@ -16,11 +17,9 @@ app.use(
 app.use(cors());
 
 // connect to mongodb & listen for requests
-const dbURI =
-  "mongodb+srv://admin:taoyranvpxyK3Cne@cluster0-st6gh.mongodb.net/events?retryWrites=true&w=majority";
 
 mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 

@@ -45,9 +45,9 @@ router.post("/search", async function (req, res) {
 });
 
 // Delte Events
-router.delete("/delete:id", async function (req, res) {
+router.delete("/delete", async function (req, res) {
   try {
-    const result = await Blog.find({ eid: req.query.id });
+    const result = await Blog.find({ eid: req.body.id });
     const removeEvent = Blog.remove({ id: result._id })
     res.json(removeEvent);
   } catch (err) {
